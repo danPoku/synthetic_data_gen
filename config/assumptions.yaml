@@ -1,0 +1,48 @@
+COPD:
+  baseline_daily_cases: 8
+  diagnosis: Chronic Obstructive Pulmonary Disease (J44)
+  estimation_note: Accra prevalence estimated as 16% of national burden (353,063 in
+    2019) per GBD study.
+  monthly_distribution:
+    April: 0.08
+    August: 0.07
+    December: 0.15
+    February: 0.11
+    January: 0.12
+    July: 0.05
+    June: 0.05
+    March: 0.09
+    May: 0.06
+    November: 0.07
+    October: 0.08
+    September: 0.07
+  seasonal_weights:
+    April: 0.9
+    August: 0.9
+    December: 1.2
+    February: 1.1
+    January: 1.2
+    July: 0.8
+    June: 0.9
+    March: 1.0
+    May: 0.8
+    November: 1.1
+    October: 1.1
+    September: 1.0
+  trend_factors:
+    '2015': 1.0
+    '2016': 1.02
+    '2017': 1.04
+    '2018': 1.06
+    '2019': 1.08
+    '2020': 1.1
+    '2021': 1.12
+    '2022': 1.14
+    '2023': 1.16
+    '2024': 1.18
+  urban_proportion: 0.16
+metadata:
+  description: 'Key assumptions for synthetic data generation: diagnosis definitions,
+    monthly patterns, and trends'
+  last_updated: '2025-04-12'
+  source: Alemayohu et al., 2023 - Burden and Risk Factors of COPD in SSA
