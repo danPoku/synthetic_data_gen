@@ -7,6 +7,10 @@ setup(
     author='Dan Gyinaye Poku',
     author_email='dan.gyinaye@gmail.com',
     packages=find_packages(),
+    include_package_data=True,
+    package_data={
+        'toolkit': ['assumptions.yaml'],
+    },
     install_requires=[
         'numpy',
         'pandas',
