@@ -67,6 +67,7 @@ def temporal_factors(date):
     eid_dates = get_eid_dates(date.year)
     if date in eid_dates:
         day_factor *= 0.5
+    return day_factor
 
 def calculate_easter(year):
     """Calculate the date of Easter Sunday for a given year."""
