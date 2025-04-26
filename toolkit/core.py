@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-from .diseases import disease_definitions
-from .temporal import temporal_factors
+from toolkit.diseases import disease_definitions
+from toolkit.temporal import temporal_factors
 
 
 class SyntheticDataGenerator:

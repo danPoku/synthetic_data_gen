@@ -16,7 +16,7 @@ def disease_definitions():
         "Acute Bronchitis (J20)": 20,
         "Asthma (J45)": 30,
         "Influenza (J09–J11)": 5,
-        "Chronic Obstructive Pulmonary Disease (J44)": 8
+        "Chronic Obstructive Pulmonary Disease (J44)": 155
     }
     
     # Seasonal adjustment factors for each month (index 0 = January, 11 = December)
@@ -28,7 +28,7 @@ def disease_definitions():
         "Acute Bronchitis (J20)": [1.2, 1.1, 0.9, 0.9, 1.0, 1.2, 1.1, 0.8, 0.9, 1.0, 1.0, 1.1],
         "Asthma (J45)": [1.3, 1.2, 1.0, 0.9, 1.0, 1.0, 0.9, 0.8, 0.9, 1.0, 1.1, 1.2],
         "Influenza (J09–J11)": [0.5, 0.5, 0.7, 0.8, 1.0, 1.3, 1.0, 0.7, 1.1, 0.9, 0.6, 0.5],
-        "Chronic Obstructive Pulmonary Disease (J44)": [1.2, 1.1, 1.0, 0.9, 0.8, 0.9, 0.8, 0.9, 1.0, 1.1, 1.1, 1.2]
+        "Chronic Obstructive Pulmonary Disease (J44)": [1.2, 1.1, 1.0, 1.0, 0.8, 0.9, 0.8, 0.9, 1.0, 1.1, 1.1, 1.2]
     }
 
     # Long-term trend factors per year for each diagnosis
