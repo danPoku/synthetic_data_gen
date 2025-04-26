@@ -1,3 +1,5 @@
+from toolkit.assumptions import Assumptions
+
 def disease_definitions():
     """
     Define diseases, baseline daily case counts, seasonal adjustment factors and long-term trends.
@@ -8,7 +10,11 @@ def disease_definitions():
             - seasonal_weights (dict): monthly adjustments factors to depict seasonality.
             - trend_factors (dict): annual growth trends.
     """
-    # Diagnoses definition and baseline daily case counts
+    # Global assumptions
+    cfg = Assumptions()
+    copd = cfg.get_disease_assumption('COPD')
+    
+    # Diagnoses definition and baseline daily case counts (hard-coded)
     diagnoses = {
         "Upper Respiratory Tract Infection (J00–J06)": 300,
         "Pneumonia (J12–J18)": 50,
@@ -42,5 +48,14 @@ def disease_definitions():
         "Influenza (J09–J11)": {yr: 1.0 for yr in years},
         "Chronic Obstructive Pulmonary Disease (J44)": {yr: 1 + 0.02*(yr - 2015) for yr in years}
     }
-
-    return diagnoses, seasonal_weights, trend_factors
+    
+    # COPD from yaml
+    key = "Chronic Obstructive Pulmonary Disease (J44)"
+    diagnoses[key] = copd['baseline_daily_cases']
+    # Values Jan, Feb, ..., Dec
+    seasonal_weights[key] = list(copd['seasonal_weights'].values())
+    trend_factors[key] = {int(y): f for y, f in copd['trend_factors'].items()}
+    # Monthly distribution
+    monthly_distribution = copd['monthly_distribution']
+    
+    return diagnoses, seasonal_weights, trend_factors, monthly_distribution
