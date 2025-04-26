@@ -1,17 +1,13 @@
-import yaml
 import os
+import importlib.resources as pkgres
+import yaml
 
 class Assumptions:
     """
     Loads and provides access to synthetic data assumptions from YAML.
     """
-    def __init__(self, path=None):
-        if path is None:
-            here = os.path.dirname(__file__)
-            # Go up two levels to find the root directory
-            project_root = os.path.abspath(os.path.join(here, os.pardir, os.pardir))
-            path = os.path.join(project_root, 'config', 'assumptions.yaml')
-        with open(path, 'r', encoding='utf-8') as f:
+    def __init__(self):
+        with pkgres.open_text('toolkit', 'assumptions.yaml') as f:
             self._data = yaml.safe_load(f)
 
     def get_metadata(self) -> dict:
