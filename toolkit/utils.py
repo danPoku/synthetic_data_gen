@@ -2,36 +2,30 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-def plot_monthly_trends(df, diagnosis):
-    """Plot the monthly trend of cases for a specific diagnosis.
-    This function filters the DataFrame for the specified diagnosis, converts the 'datetime' column to a datetime index,
-    and plots the monthly trend of cases.
+def plot_trends(df, diagnosis, frequency, title_suffix, xlabel):
+    """Plot the trend of cases for a specific diagnosis based on a given frequency.
+    
+    Args:
+        df (DataFrame): The DataFrame containing the data.
+        diagnosis (str): The diagnosis to filter the data by.
+        frequency (str): The resampling frequency ('ME' for monthly, 'Y' for yearly, etc.).
+        title_suffix (str): The suffix for the plot title.
+        xlabel (str): The label for the x-axis.
+    """
+    df_diag = df[df['primary_diagnosis'] == diagnosis]
+    df_diag.index = pd.to_datetime(df_diag['datetime'])
+    cases = df_diag.resample(frequency).sum()['number_of_cases']
+    cases.plot(title=f'{title_suffix} Trend for {diagnosis}')
+    plt.xlabel(xlabel)
+    plt.ylabel('Cases')
+    plt.show()
 
-    Args:
-        df (DataFrame): The DataFrame containing the data.
-        diagnosis (str): The diagnosis to filter the data by.
-    """
-    df_diag = df[df['primary_diagnosis'] == diagnosis]
-    df_diag.index = pd.to_datetime(df_diag['datetime'])
-    monthly_cases = df_diag.resample('ME').sum()['number_of_cases']
-    monthly_cases.plot(title=f'Monthly Trend for {diagnosis}')
-    plt.xlabel('Month')
-    plt.ylabel('Cases')
-    plt.show()
-    
+
+def plot_monthly_trends(df, diagnosis):
+    """Plot the monthly trend of cases for a specific diagnosis."""
+    plot_trends(df, diagnosis, frequency='ME', title_suffix='Monthly', xlabel='Month')
+
+
 def plot_yearly_trends(df, diagnosis):
-    """Plot the yearly trend of cases for a specific diagnosis.
-    This function filters the DataFrame for the specified diagnosis, converts the 'datetime' column to a datetime index,
-    and plots the yearly trend of cases.
-    
-    Args:
-        df (DataFrame): The DataFrame containing the data.
-        diagnosis (str): The diagnosis to filter the data by.
-    """
-    df_diag = df[df['primary_diagnosis'] == diagnosis]
-    df_diag.index = pd.to_datetime(df_diag['datetime'])
-    yearly_cases = df_diag.resample('Y').sum()['number_of_cases']
-    yearly_cases.plot(title=f'Yearly Trend for {diagnosis}')
-    plt.xlabel('Year')
-    plt.ylabel('Cases')
-    plt.show()
+    """Plot the yearly trend of cases for a specific diagnosis."""
+    plot_trends(df, diagnosis, frequency='Y', title_suffix='Yearly', xlabel='Year')
