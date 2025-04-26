@@ -22,7 +22,7 @@ synthetic_data_toolkit/
     └── utils.py
 ```
 
-- **`assumptions.yaml`**  
+- **`toolkit/assumptions.yaml`**  
   Centralized configuration of baseline rates, seasonal patterns, trends, and distributions.
 
 - **`toolkit/assumptions.py`**  
