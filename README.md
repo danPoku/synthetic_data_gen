@@ -1,7 +1,6 @@
-```markdown
 # Synthetic Data Toolkit for Epidemiology Analytics
 
-A modular, configurable toolkit for generating realistic synthetic epidemiological time‐series data.  
+A modular, configurable toolkit for generating realistic synthetic epidemiological time-series data.  
 Originally demonstrated for respiratory diseases in Accra (2015–2024), this framework can be extended to any disease/location.
 
 ---
@@ -43,32 +42,25 @@ synthetic_data_toolkit/
 - **`toolkit/utils.py`**  
   Helpers for exporting, previewing, and plotting data.
 
-- **`examples/example_usage.ipynb`**  
-  Interactive demonstration of toolkit usage.
-
 ---
 
 ## 🚀 Installation
 
-1. **Clone the repo**  
-   ```bash
-   git clone https://github.com/your-org/synthetic_data_toolkit.git
-   cd synthetic_data_toolkit
-   ```
+```bash
+# 1. Clone the repo
+git clone https://github.com/your-org/synthetic_data_toolkit.git
+cd synthetic_data_toolkit
 
-2. **Create a virtual environment**  
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate      # macOS/Linux
-   venv\Scripts\activate.bat     # Windows
-   ```
+# 2. Create a virtual environment
+python3 -m venv venv
+source venv/bin/activate      # macOS/Linux
+venv\Scripts\activate.bat     # Windows
 
-3. **Install dependencies**  
-   ```bash
-   pip install -r requirements.txt
-   # or for package installation:
-   pip install .
-   ```
+# 3. Install dependencies
+pip install -r requirements.txt
+# or to install as a package
+pip install .
+```
 
 ---
 
@@ -79,8 +71,9 @@ synthetic_data_toolkit/
 ```python
 from toolkit.assumptions import Assumptions
 
-config = Assumptions()  
+config = Assumptions()
 copd_cfg = config.get_disease_assumption("COPD")
+
 print("COPD baseline daily cases:", copd_cfg["baseline_daily_cases"])
 ```
 
@@ -110,46 +103,37 @@ preview_data(df, n=10)
 plot_monthly_trends(df, "Asthma (J45)")
 ```
 
-### 3. Notebook example
-
-Open `examples/example_usage.ipynb` in Jupyter:
-
-```bash
-cd examples
-jupyter notebook example_usage.ipynb
-```
-
 ---
 
-## ⚙️ Configuration (assumptions.yaml)
+## ⚙️ Configuration (`assumptions.yaml`)
 
-- **`baseline_daily_cases`**: neutral per-day rate before seasonality/trends
-- **`seasonal_weights`**: month-by-month multipliers
-- **`monthly_distribution`**: fraction of annual total in each month
-- **`trend_factors`**: year-by-year scaling factors
-- **`urban_proportion`**: subnational scaling (e.g. Accra vs Ghana)
+- **`baseline_daily_cases`**: Neutral per-day rate before seasonality/trends  
+- **`seasonal_weights`**: Month-by-month multipliers  
+- **`monthly_distribution`**: Fraction of annual total in each month  
+- **`trend_factors`**: Year-by-year scaling factors  
+- **`urban_proportion`**: Subnational scaling (e.g. Accra vs Ghana)
 
-Edit `assumptions.yaml` and increment `metadata.last_updated` for each change.
+Edit `assumptions.yaml` and update `metadata.last_updated` whenever you change assumptions.
 
 ---
 
 ## 🧪 Testing & Validation
 
-- **Unit tests** (not included) should verify:
-  - Sum of `monthly_distribution` ≈ 1.0
-  - Year keys in `trend_factors` cover your date range
-  - Seasonal weights list length == 12
+- **Unit tests** should verify:  
+  - Sum of `monthly_distribution` ≈ 1.0  
+  - Year keys in `trend_factors` cover your date range  
+  - Seasonal weights list length == 12  
 
 - **Data inspection**:  
-  Run the example notebook and visually inspect seasonal/trend patterns.
+  Run the example notebook and visually inspect seasonal and trend patterns.
 
 ---
 
 ## 📈 Extending to New Diseases
 
-1. **Add a top-level section** in `assumptions.yaml`, e.g. `"Influenza A"`  
-2. **Implement or override** in `diseases.py` via `Assumptions.get_disease_assumption("INFLUENZA_KEY")`  
-3. **Regenerate** using the core generator.
+1. **Add a section** in `assumptions.yaml` (e.g. `"Influenza A"`)  
+2. **Retrieve** via `config.get_disease_assumption("<KEY>")` in `diseases.py`  
+3. **Regenerate** using the core generator
 
 ---
 
@@ -157,6 +141,4 @@ Edit `assumptions.yaml` and increment `metadata.last_updated` for each change.
 
 This project is released under the **MIT License**. See [LICENSE](LICENSE) for details.
 
----
-
-> _Synthetic data is not a substitute for real observations. Use responsibly._  
+> _Synthetic data is not a substitute for real observations. Use responsibly._
