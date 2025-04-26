@@ -13,15 +13,13 @@ synthetic_data_toolkit/
 ├── setup.py
 ├── requirements.txt
 ├── assumptions.yaml
-├── toolkit/
-│   ├── __init__.py
-│   ├── assumptions.py
-│   ├── core.py
-│   ├── diseases.py
-│   ├── temporal.py
-│   └── utils.py
-└── examples/
-    └── example_usage.ipynb
+└── toolkit/
+    ├── __init__.py
+    ├── assumptions.py
+    ├── core.py
+    ├── diseases.py
+    ├── temporal.py
+    └── utils.py
 ```
 
 - **`assumptions.yaml`**  
