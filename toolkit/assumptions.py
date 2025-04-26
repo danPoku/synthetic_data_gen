@@ -9,7 +9,7 @@ class Assumptions:
         if path is None:
             root = os.path.dirname(__file__)
             path = os.path.join(root, os.pardir, 'assumptions.yaml')
-        with open(path, 'r') as f:
+        with open(path, 'r', encoding='utf-8') as f:
             self._data = yaml.safe_load(f)
 
     def get_metadata(self):
