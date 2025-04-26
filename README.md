@@ -12,10 +12,10 @@ synthetic_data_toolkit/
 ├── README.md
 ├── setup.py
 ├── requirements.txt
-├── assumptions.yaml
 └── toolkit/
     ├── __init__.py
     ├── assumptions.py
+    ├── assumptions.yaml
     ├── core.py
     ├── diseases.py
     ├── temporal.py
@@ -79,7 +79,7 @@ print("COPD baseline daily cases:", copd_cfg["baseline_daily_cases"])
 
 ```python
 from toolkit.core import SyntheticDataGenerator
-from toolkit.utils import save_to_csv, preview_data, plot_monthly_trends
+from toolkit.utils import save_to_csv, preview_data, plot_monthly_trends, plot_yearly_trends
 
 # Initialize generator
 gen = SyntheticDataGenerator(
@@ -99,6 +99,7 @@ preview_data(df, n=10)
 
 # Plot an example disease
 plot_monthly_trends(df, "Asthma (J45)")
+plot_yearly_trends(df, "Asthma (J45)")
 ```
 
 ---
