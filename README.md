@@ -1,7 +1,6 @@
 # Synthetic Data Toolkit for Epidemiology Analytics
 
-A modular, configurable toolkit for generating realistic synthetic epidemiological time-series data.  
-Originally demonstrated for respiratory diseases in Accra (2015–2024), this framework can be extended to any disease/location.
+A flexible and customizable toolkit designed for producing realistic synthetic epidemiological time-series data. Initially showcased for respiratory illnesses in Accra from 2015 to 2024, this framework is adaptable for any disease or location.
 
 ---
 
@@ -92,7 +91,7 @@ gen = SyntheticDataGenerator(
 df = gen.simulate()
 
 # Export
-save_to_csv(df, "respiratory_cases_accra.csv")
+save_to_csv(df, f"respiratory_cases_{gen.location}.csv")
 
 # Quick preview
 preview_data(df, n=10)
