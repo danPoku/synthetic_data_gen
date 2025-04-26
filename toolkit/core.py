@@ -20,11 +20,17 @@ class SyntheticDataGenerator:
             Simulates synthetic healthcare data based on disease definitions, seasonal trends,
             and temporal factors, and returns the data as a pandas DataFrame.
     """
+
     def __init__(self, location, start_date, end_date, seed=42):
         self.location = location
         self.dates = pd.date_range(start=start_date, end=end_date, freq="D")
         np.random.seed(seed)
-        self.diseases, self.seasonal_weights, self.trend_factors = disease_definitions()
+        (
+            self.diseases,
+            self.seasonal_weights,
+            self.trend_factors,
+            self.monthly_distribution,
+        ) = disease_definitions()
 
     def simulate(self):
         """
@@ -40,8 +46,8 @@ class SyntheticDataGenerator:
                 - 'primary_diagnosis': The name of the disease/diagnosis.
                 - 'number_of_cases': The simulated number of cases for the diagnosis.
         Notes:
-            - For certain diseases (e.g., "Upper Respiratory Tract Infection (J00–J06)" 
-              and "Pneumonia (J12–J18)"), the minimum number of cases is set to 1 if the 
+            - For certain diseases (e.g., "Upper Respiratory Tract Infection (J00–J06)"
+              and "Pneumonia (J12–J18)"), the minimum number of cases is set to 1 if the
               simulated count is less than 1.
             - The method assumes that the following attributes are defined in the class:
                 - self.dates: A list of datetime objects representing the simulation dates.
@@ -55,14 +61,25 @@ class SyntheticDataGenerator:
             day_factor = temporal_factors(date)
             month_index = date.month - 1
             year = date.year
+            month_name = date.strftime("%B")
 
             for diag, base_rate in self.diseases.items():
+                # Core seasonal and trend components
                 seasonal = self.seasonal_weights[diag][month_index]
                 trend = self.trend_factors[diag][year]
                 mean_cases = base_rate * seasonal * trend * day_factor
 
+                # Monthly distribution adjustment
+                monthly_dist = self.monthly_distribution.get(diag)
+                if isinstance(monthly_dist, dict):
+                    month_frac = monthly_dist.get(month_name, 1.0)
+                    # Scale mean cases to include distribution
+                    mean_cases *= month_frac * 12
+
+                # Simulate the number of cases using Poisson distribution
                 count = np.random.poisson(mean_cases)
 
+                # Adjust count for specific diseases to ensure at least 1 case
                 if (
                     diag
                     in [
