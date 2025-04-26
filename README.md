@@ -84,8 +84,8 @@ from toolkit.utils import save_to_csv, preview_data, plot_monthly_trends, plot_y
 # Initialize generator
 gen = SyntheticDataGenerator(
     location="Accra",
-    start_date="2015-01-01",
-    end_date="2024-12-31"
+    start_date="2015-01-01", # Format YYYY-MM-DD
+    end_date="2024-12-31" # Format YYYY-MM-DD
 )
 
 # Simulate
