@@ -1,11 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-def save_to_csv(df, filename):
-    df.to_csv(filename, index=False)
-
-def preview_data(df, n=10):
-    return df.head(n)
 
 def plot_monthly_trends(df, diagnosis):
     """Plot the monthly trend of cases for a specific diagnosis.
