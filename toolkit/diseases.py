@@ -15,6 +15,7 @@ def disease_definitions():
     copd = cfg.get_disease_assumption('COPD')
     
     # Diagnoses definition and baseline daily case counts (hard-coded)
+    # TODO: replace hard-coded values with data from YAML file
     diagnoses = {
         "Upper Respiratory Tract Infection (J00–J06)": 300,
         "Pneumonia (J12–J18)": 50,
