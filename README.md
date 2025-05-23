@@ -1,6 +1,6 @@
 # Synthetic Data Toolkit for Epidemiology Analytics
 
-A flexible and customizable toolkit designed for producing realistic synthetic epidemiological time-series data. Initially showcased for respiratory illnesses in Accra from 2015 to 2024, this framework is adaptable for any disease or location.
+A flexible toolkit designed for producing realistic synthetic epidemiological time-series data. Initially showcased for respiratory illnesses in Accra from 2015 to 2024, this framework is adaptable for any disease or location.
 
 ---
 
